@@ -1,11 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Contador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        #valor {
+            font-size: 40px;
+            margin: 20px;
+        }
+    </style>
 </head>
 <body>
-    
+
+    <h1>Contador</h1>
+
+    <div id="valor">10</div>
+
+    <button id="incrementar">Incrementar +1</button>
+    <button id="decrementar">Decrementar -2</button>
+
+    <script>
+        // Variable que guarda el número actual
+        let contador = 10;
+
+        // Constantes del rango permitido
+        const MIN = 0;
+        const MAX = 20;
+
+        // Traemos los elementos del HTML
+        const valor = document.getElementById("valor");
+        const btnIncrementar = document.getElementById("incrementar");
+        const btnDecrementar = document.getElementById("decrementar");
+
+        // Función para actualizar el número en pantalla
+        function actualizarVista() {
+            valor.textContent = contador;
+
+            // Deshabilitar si el siguiente incremento supera el máximo
+            btnIncrementar.disabled = (contador + 1 > MAX);
+
+            // Deshabilitar si el siguiente decremento baja del mínimo
+            btnDecrementar.disabled = (contador - 2 < MIN);
+        }
+
+        // Evento del botón incrementar
+        btnIncrementar.addEventListener("click", function() {
+            contador += 1;
+            actualizarVista();
+        });
+
+        // Evento del botón decrementar
+        btnDecrementar.addEventListener("click", function() {
+            contador -= 2;
+            actualizarVista();
+        });
+
+        // Ejecutar al inicio para validar botones
+        actualizarVista();
+    </script>
+
 </body>
 </html>
